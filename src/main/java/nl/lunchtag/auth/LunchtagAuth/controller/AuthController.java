@@ -41,7 +41,7 @@ public class AuthController {
     public ResponseEntity login(@Valid @RequestBody LoginModel loginModel) {
         Optional<User> user = userService.findUserByEmail(loginModel.getEmail());
 
-        if(user.isEmpty()) {
+        if(!user.isPresent()) {
             return new ResponseEntity<>(AuthResponse.WRONG_CREDENTIALS.toString(), HttpStatus.BAD_REQUEST);
         }
 
