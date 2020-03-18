@@ -14,10 +14,6 @@
 	<name>LunchtagAuth</name>
 	<description>Auth server for Lunchtag</description>
 
-	<properties>
-		<java.version>11</java.version>
-	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
