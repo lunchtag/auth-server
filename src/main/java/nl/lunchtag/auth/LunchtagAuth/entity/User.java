@@ -18,16 +18,19 @@ import java.util.Collections;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @EntityListeners(AuditingEntityListener.class)
-@Getter @Setter
+@Getter
+@Setter
 public class User implements Serializable, UserDetails {
+
     @Id
+    @Type(type="uuid-char")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Type(type = "uuid-char")
     @JsonIgnore
     private UUID id;
 
+    @JsonIgnore
     @NotBlank(message = "Email cannot be blank")
     @Column(unique = true)
     private String email;
@@ -46,22 +49,20 @@ public class User implements Serializable, UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role = Role.USER;
 
-    @JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(this.role.toString()));
-    }
-
-    @JsonIgnore
     @Override
     public String getPassword() {
         return this.password;
     }
 
-    @JsonIgnore
     @Override
     public String getUsername() {
         return getEmail();
+    }
+
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.singletonList(new SimpleGrantedAuthority(this.role.toString()));
     }
 
     @JsonIgnore
@@ -88,3 +89,4 @@ public class User implements Serializable, UserDetails {
         return true;
     }
 }
+
