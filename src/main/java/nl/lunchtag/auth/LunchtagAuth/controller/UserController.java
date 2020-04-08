@@ -26,7 +26,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @ApiOperation(value = "GetUser")
+    @ApiOperation(value = "User")
     @GetMapping
     public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails) {
         Map<Object, Object> model = new LinkedHashMap<>();
