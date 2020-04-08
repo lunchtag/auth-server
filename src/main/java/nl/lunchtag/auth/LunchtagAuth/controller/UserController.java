@@ -1,5 +1,6 @@
 package nl.lunchtag.auth.LunchtagAuth.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import nl.lunchtag.auth.LunchtagAuth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
 
+@Api(tags = "User")
 @RestController
 @RequestMapping("/user")
 public class UserController {
