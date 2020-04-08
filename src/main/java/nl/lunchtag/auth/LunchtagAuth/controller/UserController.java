@@ -1,5 +1,6 @@
 package nl.lunchtag.auth.LunchtagAuth.controller;
 
+import io.swagger.annotations.ApiOperation;
 import nl.lunchtag.auth.LunchtagAuth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ApiOperation(value = "GetUser")
     @GetMapping
     public ResponseEntity currentUser(@AuthenticationPrincipal UserDetails userDetails) {
         Map<Object, Object> model = new LinkedHashMap<>();

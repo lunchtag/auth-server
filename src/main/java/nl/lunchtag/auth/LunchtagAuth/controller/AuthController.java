@@ -1,5 +1,8 @@
 package nl.lunchtag.auth.LunchtagAuth.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import nl.lunchtag.auth.LunchtagAuth.config.jwt.TokenProvider;
 import nl.lunchtag.auth.LunchtagAuth.controller.enums.AuthResponse;
 import nl.lunchtag.auth.LunchtagAuth.entity.User;
@@ -37,6 +40,7 @@ public class AuthController {
         this.passwordHelper = passwordHelper;
     }
 
+    @ApiOperation(value = "Login")
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody LoginModel loginModel) {
         Optional<User> user = userService.findUserByEmail(loginModel.getEmail());
@@ -59,6 +63,7 @@ public class AuthController {
         }
     }
 
+    @ApiOperation(value = "Register")
     @PostMapping("/register")
     public ResponseEntity register(@Valid @RequestBody RegisterModel registerModel) {
         if(userService.findUserByEmail(registerModel.getEmail()).isPresent()) {
